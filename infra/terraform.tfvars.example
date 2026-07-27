@@ -1,0 +1,11 @@
+project_id                  = "your-gcp-project-id"
+region                      = "us-central1"
+image                       = "us-central1-docker.pkg.dev/your-gcp-project-id/faq/app@sha256:0000000000000000000000000000000000000000000000000000000000000000"
+bootstrap_admin_email       = "admin@example.com"
+organization_name           = "Example Organization"
+public_base_url             = "https://bootstrap.invalid"
+operator_audience           = "https://bootstrap.invalid/operator"
+jobs_audience               = "https://bootstrap.invalid/jobs"
+operator_invokers           = ["group:faq-operators@example.com"]
+operator_allowed_emails     = ["operator@example.com"]
+alert_email                 = "faq-operations@example.com"

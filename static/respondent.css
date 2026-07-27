@@ -1,0 +1,44 @@
+:root { color-scheme: only light; color: #17231e; background: #e9e4d7; font-family: Arial, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; }
+header { display: flex; justify-content: space-between; padding: 18px clamp(18px, 5vw, 60px); border-bottom: 1px solid #17231e; background: #17231e; color: #f7f3e8; }
+header > div { display: flex; align-items: center; gap: 10px; }
+header img { width: 28px; height: 28px; object-fit: contain; }
+header strong { font-size: 1.2rem; }
+header span, .kicker, .number, label > span, legend { font: 700 .72rem/1.4 monospace; letter-spacing: .08em; text-transform: uppercase; }
+main { width: min(820px, 100%); margin: auto; padding: 42px 20px 70px; }
+.ask-intro { padding-bottom: 30px; border-bottom: 2px solid #17231e; }
+.avatar { float: right; width: 54px; height: 54px; border-radius: 50%; object-fit: cover; }
+.kicker, .number { color: #a83b22; }
+h1 { max-width: 720px; margin: 8px 0 18px; font-size: clamp(2.6rem, 10vw, 5.5rem); line-height: .92; letter-spacing: -.06em; }
+.intro { font: 1.08rem/1.55 Georgia, serif; }
+.default-note { padding: 12px; border-left: 4px solid #c94d2f; background: #ded8c9; }
+.deadline { display: inline-flex; gap: 9px; padding: 9px 12px; border: 1px solid #17231e; }
+.deadline.overdue { color: #9f2d20; border-color: #9f2d20; font-weight: 700; }
+.correction { padding: 12px; border-left: 3px solid #b65f36; background: #f4eee4; }
+.progress { padding: 12px 14px; border-left: 4px solid #31533e; background: #e0eadd; font-weight: 700; }
+.questions { display: grid; gap: 20px; margin-top: 28px; }
+.question { padding: clamp(20px, 5vw, 34px); border: 1px solid #7d857e; background: #f7f3e8; }
+.question h2 { margin: 5px 0 10px; font-size: clamp(1.4rem, 5vw, 2rem); letter-spacing: -.035em; }
+.help { color: #59635c; font-family: Georgia, serif; }
+.question aside { margin: 18px 0; padding: 14px; border-left: 4px solid #c94d2f; background: #e5dfd0; }
+.question aside p { margin: 6px 0; }
+.saved { padding: 10px 12px; border: 1px solid #52705e; color: #31533e; background: #e0eadd; font-weight: 700; }
+.error { margin: 14px 0; padding: 12px; border: 2px solid #a52f1b; color: #7b2112; background: #f7ded7; font-weight: 700; }
+form { display: grid; gap: 18px; margin-top: 20px; }
+fieldset { display: grid; gap: 8px; margin: 0; padding: 0; border: 0; }
+legend, label > span { display: block; margin-bottom: 8px; }
+.option { display: grid; grid-template-columns: 24px 1fr; align-items: start; min-height: 48px; padding: 11px; border: 1px solid #979d97; cursor: pointer; }
+.option input { width: 20px; height: 20px; margin: 1px 0 0; }
+.option small { display: block; margin-top: 5px; color: #5c665f; }
+textarea, select, input[type="text"], input:not([type]) { width: 100%; min-height: 48px; padding: 11px; border: 1px solid #59635c; border-radius: 0; background: white; font: 16px/1.4 Arial, sans-serif; }
+label > small { display: block; margin-top: 7px; color: #59635c; line-height: 1.4; }
+textarea { resize: vertical; }
+button { min-height: 48px; padding: 12px 18px; border: 2px solid #17231e; border-radius: 0; color: white; background: #17231e; font-size: 1rem; font-weight: 700; cursor: pointer; }
+.notice { padding-top: 20vh; }
+input:focus-visible, textarea:focus-visible, select:focus-visible, button:focus-visible { outline: 4px solid #e36b43; outline-offset: 2px; }
+@media (max-width: 600px) {
+  main { padding: 30px 0 55px; }
+  .ask-intro { padding: 0 18px 28px; }
+  .question { border-right: 0; border-left: 0; }
+}

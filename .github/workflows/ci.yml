@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    services:
+      postgres:
+        image: postgres:17.5-alpine
+        env:
+          POSTGRES_DB: faq
+          POSTGRES_USER: faq
+          POSTGRES_PASSWORD: faq
+        ports:
+          - 55433:5432
+        options: >-
+          --health-cmd "pg_isready -U faq -d faq"
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: uv sync --frozen
+      - run: uv run ruff check . && uv run mypy app tests
+      - run: uv run pytest --cov=app --cov-report=term-missing --cov-report=xml:coverage/backend.xml --cov-report=html:coverage/backend
+      - run: npm ci --legacy-peer-deps
+        working-directory: frontend
+      - run: npm run contract:check
+        working-directory: frontend
+      - run: npm run lint && npm run test:coverage -- --coverage.reporter=text --coverage.reporter=lcov --coverage.reportsDirectory=coverage && npm run build
+        working-directory: frontend
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-reports
+          path: |
+            coverage/
+            frontend/coverage/
+      - run: npm run test:browser
+        working-directory: frontend
+      - name: Migration roundtrip in disposable database
+        env:
+          PGPASSWORD: faq
+          FAQ_DATABASE_URL: postgresql+psycopg://faq:faq@localhost:55433/faq_migration_test
+        run: |
+          psql -h localhost -p 55433 -U faq -d postgres -v ON_ERROR_STOP=1 -c 'DROP DATABASE IF EXISTS faq_migration_test WITH (FORCE)'
+          psql -h localhost -p 55433 -U faq -d postgres -v ON_ERROR_STOP=1 -c 'CREATE DATABASE faq_migration_test'
+          uv run alembic upgrade head
+          uv run alembic downgrade base
+          uv run alembic upgrade head

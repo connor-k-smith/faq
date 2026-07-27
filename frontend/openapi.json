@@ -1,0 +1,6902 @@
+{
+  "components": {
+    "schemas": {
+      "AccessActor": {
+        "properties": {
+          "authenticated": {
+            "title": "Authenticated",
+            "type": "boolean"
+          },
+          "deactivated": {
+            "title": "Deactivated",
+            "type": "boolean"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/OrganizationRole"
+          }
+        },
+        "required": [
+          "id",
+          "display_name",
+          "email",
+          "role",
+          "authenticated",
+          "deactivated"
+        ],
+        "title": "AccessActor",
+        "type": "object"
+      },
+      "AccessInvitation": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "expires_at"
+        ],
+        "title": "AccessInvitation",
+        "type": "object"
+      },
+      "AccessMembership": {
+        "properties": {
+          "actor_id": {
+            "format": "uuid",
+            "title": "Actor Id",
+            "type": "string"
+          },
+          "project_id": {
+            "format": "uuid",
+            "title": "Project Id",
+            "type": "string"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          }
+        },
+        "required": [
+          "project_id",
+          "actor_id",
+          "role"
+        ],
+        "title": "AccessMembership",
+        "type": "object"
+      },
+      "AccessOverview": {
+        "properties": {
+          "actors": {
+            "items": {
+              "$ref": "#/components/schemas/AccessActor"
+            },
+            "title": "Actors",
+            "type": "array"
+          },
+          "invitations": {
+            "items": {
+              "$ref": "#/components/schemas/AccessInvitation"
+            },
+            "title": "Invitations",
+            "type": "array"
+          },
+          "memberships": {
+            "items": {
+              "$ref": "#/components/schemas/AccessMembership"
+            },
+            "title": "Memberships",
+            "type": "array"
+          },
+          "projects": {
+            "items": {
+              "$ref": "#/components/schemas/AccessProject"
+            },
+            "title": "Projects",
+            "type": "array"
+          }
+        },
+        "required": [
+          "actors",
+          "projects",
+          "invitations",
+          "memberships"
+        ],
+        "title": "AccessOverview",
+        "type": "object"
+      },
+      "AccessProject": {
+        "properties": {
+          "archived": {
+            "title": "Archived",
+            "type": "boolean"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "membership_count": {
+            "title": "Membership Count",
+            "type": "integer"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "archived",
+          "membership_count"
+        ],
+        "title": "AccessProject",
+        "type": "object"
+      },
+      "ActorResponse": {
+        "properties": {
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "organization_role": {
+            "title": "Organization Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "display_name",
+          "organization_role"
+        ],
+        "title": "ActorResponse",
+        "type": "object"
+      },
+      "AdvisoryResponseWrite": {
+        "properties": {
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          },
+          "disposition": {
+            "$ref": "#/components/schemas/ResponseDisposition"
+          },
+          "submission_id": {
+            "format": "uuid",
+            "title": "Submission Id",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/JsonValue"
+          }
+        },
+        "required": [
+          "disposition",
+          "submission_id"
+        ],
+        "title": "AdvisoryResponseWrite",
+        "type": "object"
+      },
+      "AskAggregate": {
+        "properties": {
+          "can_add_questions": {
+            "title": "Can Add Questions",
+            "type": "boolean"
+          },
+          "can_add_recipients": {
+            "title": "Can Add Recipients",
+            "type": "boolean"
+          },
+          "can_create_successor": {
+            "title": "Can Create Successor",
+            "type": "boolean"
+          },
+          "can_edit_questions": {
+            "title": "Can Edit Questions",
+            "type": "boolean"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "critiques_overridden": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Critiques Overridden",
+            "type": "array"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "deadline_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline Date"
+          },
+          "default_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Note"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "initiative": {
+            "$ref": "#/components/schemas/InitiativeRef"
+          },
+          "initiative_id": {
+            "format": "uuid",
+            "title": "Initiative Id",
+            "type": "string"
+          },
+          "intro": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intro"
+          },
+          "overdue": {
+            "title": "Overdue",
+            "type": "boolean"
+          },
+          "owner_id": {
+            "format": "uuid",
+            "title": "Owner Id",
+            "type": "string"
+          },
+          "owner_timezone": {
+            "title": "Owner Timezone",
+            "type": "string"
+          },
+          "parent_ask_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Ask Id"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectRef"
+          },
+          "project_id": {
+            "format": "uuid",
+            "title": "Project Id",
+            "type": "string"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionDto"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "read_only": {
+            "title": "Read Only",
+            "type": "boolean"
+          },
+          "recipient_previews": {
+            "items": {
+              "$ref": "#/components/schemas/RecipientPreview"
+            },
+            "title": "Recipient Previews",
+            "type": "array"
+          },
+          "recipients": {
+            "items": {
+              "$ref": "#/components/schemas/RecipientDto"
+            },
+            "title": "Recipients",
+            "type": "array"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AskStatus"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "project_id",
+          "initiative_id",
+          "parent_ask_id",
+          "title",
+          "intro",
+          "deadline",
+          "deadline_date",
+          "owner_timezone",
+          "overdue",
+          "default_note",
+          "status",
+          "owner_id",
+          "critiques_overridden",
+          "created_at",
+          "read_only",
+          "can_edit_questions",
+          "can_add_questions",
+          "can_add_recipients",
+          "can_create_successor",
+          "project",
+          "initiative",
+          "questions",
+          "recipients",
+          "recipient_previews"
+        ],
+        "title": "AskAggregate",
+        "type": "object"
+      },
+      "AskCreate": {
+        "properties": {
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "default_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Note"
+          },
+          "initiative_id": {
+            "format": "uuid",
+            "title": "Initiative Id",
+            "type": "string"
+          },
+          "intro": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intro"
+          },
+          "project_id": {
+            "format": "uuid",
+            "title": "Project Id",
+            "type": "string"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          },
+          "title": {
+            "maxLength": 500,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "project_id",
+          "initiative_id",
+          "title"
+        ],
+        "title": "AskCreate",
+        "type": "object"
+      },
+      "AskResults": {
+        "properties": {
+          "can_decide": {
+            "title": "Can Decide",
+            "type": "boolean"
+          },
+          "closed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Closed At"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "elapsed_seconds": {
+            "title": "Elapsed Seconds",
+            "type": "integer"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "overdue": {
+            "title": "Overdue",
+            "type": "boolean"
+          },
+          "owner_id": {
+            "format": "uuid",
+            "title": "Owner Id",
+            "type": "string"
+          },
+          "parent_ask_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Ask Id"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/ResultQuestionDto"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "sent_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sent At"
+          },
+          "stakeholders": {
+            "items": {
+              "$ref": "#/components/schemas/StakeholderResultDto"
+            },
+            "title": "Stakeholders",
+            "type": "array"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AskStatus"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "parent_ask_id",
+          "status",
+          "owner_id",
+          "sent_at",
+          "closed_at",
+          "deadline",
+          "overdue",
+          "elapsed_seconds",
+          "can_decide",
+          "questions",
+          "stakeholders"
+        ],
+        "title": "AskResults",
+        "type": "object"
+      },
+      "AskStatus": {
+        "enum": [
+          "draft",
+          "sent",
+          "closed",
+          "cancelled"
+        ],
+        "title": "AskStatus",
+        "type": "string"
+      },
+      "AskSummary": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AskStatus"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "status",
+          "created_at"
+        ],
+        "title": "AskSummary",
+        "type": "object"
+      },
+      "AskUpdate": {
+        "properties": {
+          "critiques_overridden": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Critiques Overridden",
+            "type": "array"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "default_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Default Note"
+          },
+          "intro": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Intro"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          },
+          "title": {
+            "maxLength": 500,
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "title": "AskUpdate",
+        "type": "object"
+      },
+      "AssignmentOrigin": {
+        "enum": [
+          "assigned",
+          "unsolicited",
+          "delegated"
+        ],
+        "title": "AssignmentOrigin",
+        "type": "string"
+      },
+      "AssignmentState": {
+        "enum": [
+          "blocked",
+          "pending",
+          "responded",
+          "delegated",
+          "expired",
+          "withdrawn"
+        ],
+        "title": "AssignmentState",
+        "type": "string"
+      },
+      "AssistantResponse": {
+        "properties": {
+          "authoring_session_id": {
+            "format": "uuid",
+            "title": "Authoring Session Id",
+            "type": "string"
+          },
+          "clarification": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/NeedsClarification"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "critiques": {
+            "items": {
+              "$ref": "#/components/schemas/ProductCritique"
+            },
+            "title": "Critiques",
+            "type": "array"
+          },
+          "draft": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AskAggregate"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "kind": {
+            "enum": [
+              "draft",
+              "clarification"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "prompt_version": {
+            "title": "Prompt Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "authoring_session_id",
+          "prompt_version"
+        ],
+        "title": "AssistantResponse",
+        "type": "object"
+      },
+      "AuthConfigResponse": {
+        "properties": {
+          "firebase": {
+            "$ref": "#/components/schemas/FirebaseWebConfig"
+          },
+          "provider": {
+            "title": "Provider",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "firebase"
+        ],
+        "title": "AuthConfigResponse",
+        "type": "object"
+      },
+      "ChecklistWrite": {
+        "properties": {
+          "sent": {
+            "title": "Sent",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "sent"
+        ],
+        "title": "ChecklistWrite",
+        "type": "object"
+      },
+      "DecisionBasis": {
+        "enum": [
+          "unanimous",
+          "single_respondent",
+          "majority",
+          "asker_judgment",
+          "asker_override",
+          "expired_no_response",
+          "revision"
+        ],
+        "title": "DecisionBasis",
+        "type": "string"
+      },
+      "DecisionDto": {
+        "properties": {
+          "advisory_disagreement": {
+            "title": "Advisory Disagreement",
+            "type": "boolean"
+          },
+          "basis": {
+            "$ref": "#/components/schemas/DecisionBasis"
+          },
+          "committed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Committed At"
+          },
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceWrite"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "historical": {
+            "title": "Historical",
+            "type": "boolean"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "resolution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResolutionMetadataDto"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "shared_with_recipients_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Shared With Recipients At"
+          },
+          "state": {
+            "$ref": "#/components/schemas/DecisionState"
+          },
+          "statement": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Statement"
+          },
+          "statement_source": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DecisionStatementSource"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "substantive_evidence_count": {
+            "title": "Substantive Evidence Count",
+            "type": "integer"
+          },
+          "successor_decision_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Successor Decision Id"
+          },
+          "supersedes_decision_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Decision Id"
+          },
+          "value": {
+            "$ref": "#/components/schemas/JsonValue"
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "basis",
+          "value",
+          "statement",
+          "statement_source",
+          "committed_at",
+          "shared_with_recipients_at",
+          "substantive_evidence_count",
+          "evidence",
+          "resolution",
+          "advisory_disagreement",
+          "supersedes_decision_id",
+          "successor_decision_id",
+          "historical"
+        ],
+        "title": "DecisionDto",
+        "type": "object"
+      },
+      "DecisionResponseRole": {
+        "enum": [
+          "determining",
+          "context"
+        ],
+        "title": "DecisionResponseRole",
+        "type": "string"
+      },
+      "DecisionState": {
+        "enum": [
+          "proposed",
+          "committed",
+          "superseded"
+        ],
+        "title": "DecisionState",
+        "type": "string"
+      },
+      "DecisionStatementSource": {
+        "enum": [
+          "owner",
+          "deterministic",
+          "model_draft"
+        ],
+        "title": "DecisionStatementSource",
+        "type": "string"
+      },
+      "DecisionSummary": {
+        "properties": {
+          "ask_id": {
+            "format": "uuid",
+            "title": "Ask Id",
+            "type": "string"
+          },
+          "committed_at": {
+            "format": "date-time",
+            "title": "Committed At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "statement": {
+            "title": "Statement",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ask_id",
+          "statement",
+          "committed_at"
+        ],
+        "title": "DecisionSummary",
+        "type": "object"
+      },
+      "DecisionWrite": {
+        "properties": {
+          "evidence": {
+            "items": {
+              "$ref": "#/components/schemas/EvidenceWrite"
+            },
+            "title": "Evidence",
+            "type": "array"
+          },
+          "outcome_effect": {
+            "$ref": "#/components/schemas/OutcomeEffect"
+          },
+          "outcome_effect_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome Effect Note"
+          },
+          "proposal_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Proposal Id"
+          },
+          "share_with_recipients": {
+            "default": false,
+            "title": "Share With Recipients",
+            "type": "boolean"
+          },
+          "statement": {
+            "title": "Statement",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/JsonValue"
+          }
+        },
+        "required": [
+          "statement",
+          "outcome_effect"
+        ],
+        "title": "DecisionWrite",
+        "type": "object"
+      },
+      "DraftRequest": {
+        "properties": {
+          "authoring_session_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Authoring Session Id"
+          },
+          "source": {
+            "maxLength": 50000,
+            "minLength": 1,
+            "title": "Source",
+            "type": "string"
+          }
+        },
+        "required": [
+          "source"
+        ],
+        "title": "DraftRequest",
+        "type": "object"
+      },
+      "EvidenceWrite": {
+        "properties": {
+          "response_id": {
+            "format": "uuid",
+            "title": "Response Id",
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/DecisionResponseRole"
+          }
+        },
+        "required": [
+          "response_id",
+          "role"
+        ],
+        "title": "EvidenceWrite",
+        "type": "object"
+      },
+      "ExchangeRequest": {
+        "properties": {
+          "id_token": {
+            "title": "Id Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id_token"
+        ],
+        "title": "ExchangeRequest",
+        "type": "object"
+      },
+      "FeedItem": {
+        "properties": {
+          "advisory": {
+            "default": false,
+            "title": "Advisory",
+            "type": "boolean"
+          },
+          "ask_id": {
+            "format": "uuid",
+            "title": "Ask Id",
+            "type": "string"
+          },
+          "ask_status": {
+            "$ref": "#/components/schemas/AskStatus"
+          },
+          "ask_title": {
+            "title": "Ask Title",
+            "type": "string"
+          },
+          "asker_id": {
+            "format": "uuid",
+            "title": "Asker Id",
+            "type": "string"
+          },
+          "asker_name": {
+            "title": "Asker Name",
+            "type": "string"
+          },
+          "decision_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Id"
+          },
+          "initiative_id": {
+            "format": "uuid",
+            "title": "Initiative Id",
+            "type": "string"
+          },
+          "initiative_name": {
+            "title": "Initiative Name",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "ask",
+              "question",
+              "option",
+              "decision",
+              "response"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "late": {
+            "default": false,
+            "title": "Late",
+            "type": "boolean"
+          },
+          "occurred_at": {
+            "format": "date-time",
+            "title": "Occurred At",
+            "type": "string"
+          },
+          "parent_ask_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Ask Id"
+          },
+          "question_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Id"
+          },
+          "rank": {
+            "title": "Rank",
+            "type": "number"
+          },
+          "respondent_actor_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Respondent Actor Id"
+          },
+          "respondent_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Respondent Name"
+          },
+          "revision": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revision"
+          },
+          "snippet": {
+            "title": "Snippet",
+            "type": "string"
+          },
+          "source_id": {
+            "format": "uuid",
+            "title": "Source Id",
+            "type": "string"
+          },
+          "successor_decision_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Successor Decision Id"
+          },
+          "superseded": {
+            "default": false,
+            "title": "Superseded",
+            "type": "boolean"
+          },
+          "supersedes_decision_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Decision Id"
+          }
+        },
+        "required": [
+          "kind",
+          "source_id",
+          "ask_id",
+          "ask_title",
+          "ask_status",
+          "parent_ask_id",
+          "initiative_id",
+          "initiative_name",
+          "asker_id",
+          "asker_name",
+          "question_id",
+          "decision_id",
+          "occurred_at",
+          "rank",
+          "snippet"
+        ],
+        "title": "FeedItem",
+        "type": "object"
+      },
+      "FeedOption": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "label"
+        ],
+        "title": "FeedOption",
+        "type": "object"
+      },
+      "FeedPage": {
+        "properties": {
+          "askers": {
+            "items": {
+              "$ref": "#/components/schemas/FeedOption"
+            },
+            "title": "Askers",
+            "type": "array"
+          },
+          "initiatives": {
+            "items": {
+              "$ref": "#/components/schemas/FeedOption"
+            },
+            "title": "Initiatives",
+            "type": "array"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/FeedItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor",
+          "initiatives",
+          "askers"
+        ],
+        "title": "FeedPage",
+        "type": "object"
+      },
+      "FirebaseWebConfig": {
+        "properties": {
+          "api_key": {
+            "title": "Api Key",
+            "type": "string"
+          },
+          "app_id": {
+            "title": "App Id",
+            "type": "string"
+          },
+          "auth_domain": {
+            "title": "Auth Domain",
+            "type": "string"
+          },
+          "project_id": {
+            "title": "Project Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "api_key",
+          "auth_domain",
+          "project_id",
+          "app_id"
+        ],
+        "title": "FirebaseWebConfig",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "InboxCounts": {
+        "properties": {
+          "collecting": {
+            "title": "Collecting",
+            "type": "integer"
+          },
+          "outcome_effect": {
+            "title": "Outcome Effect",
+            "type": "integer"
+          },
+          "proposed_decision": {
+            "title": "Proposed Decision",
+            "type": "integer"
+          },
+          "total": {
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "total",
+          "proposed_decision",
+          "outcome_effect",
+          "collecting"
+        ],
+        "title": "InboxCounts",
+        "type": "object"
+      },
+      "InboxItem": {
+        "properties": {
+          "ask_id": {
+            "format": "uuid",
+            "title": "Ask Id",
+            "type": "string"
+          },
+          "ask_status": {
+            "title": "Ask Status",
+            "type": "string"
+          },
+          "ask_title": {
+            "title": "Ask Title",
+            "type": "string"
+          },
+          "close_policy": {
+            "title": "Close Policy",
+            "type": "string"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "decision_basis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Basis"
+          },
+          "decision_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Id"
+          },
+          "initiative_id": {
+            "format": "uuid",
+            "title": "Initiative Id",
+            "type": "string"
+          },
+          "initiative_name": {
+            "title": "Initiative Name",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "proposed_decision",
+              "outcome_effect",
+              "collecting"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "occurred_at": {
+            "format": "date-time",
+            "title": "Occurred At",
+            "type": "string"
+          },
+          "overdue": {
+            "title": "Overdue",
+            "type": "boolean"
+          },
+          "project_id": {
+            "format": "uuid",
+            "title": "Project Id",
+            "type": "string"
+          },
+          "project_name": {
+            "title": "Project Name",
+            "type": "string"
+          },
+          "question_id": {
+            "format": "uuid",
+            "title": "Question Id",
+            "type": "string"
+          },
+          "question_ordinal": {
+            "title": "Question Ordinal",
+            "type": "integer"
+          },
+          "question_prompt": {
+            "title": "Question Prompt",
+            "type": "string"
+          },
+          "question_status": {
+            "title": "Question Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "project_id",
+          "project_name",
+          "initiative_id",
+          "initiative_name",
+          "ask_id",
+          "ask_title",
+          "ask_status",
+          "question_id",
+          "question_ordinal",
+          "question_prompt",
+          "question_status",
+          "decision_id",
+          "decision_basis",
+          "deadline",
+          "overdue",
+          "close_policy",
+          "occurred_at"
+        ],
+        "title": "InboxItem",
+        "type": "object"
+      },
+      "InboxPage": {
+        "properties": {
+          "counts": {
+            "$ref": "#/components/schemas/InboxCounts"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/InboxItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "counts",
+          "items",
+          "next_cursor"
+        ],
+        "title": "InboxPage",
+        "type": "object"
+      },
+      "InitiativeKind": {
+        "enum": [
+          "feature",
+          "milestone",
+          "workstream",
+          "other"
+        ],
+        "title": "InitiativeKind",
+        "type": "string"
+      },
+      "InitiativeRef": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "InitiativeRef",
+        "type": "object"
+      },
+      "InitiativeSummary": {
+        "properties": {
+          "archived": {
+            "title": "Archived",
+            "type": "boolean"
+          },
+          "asks": {
+            "items": {
+              "$ref": "#/components/schemas/AskSummary"
+            },
+            "title": "Asks",
+            "type": "array"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/InitiativeKind"
+          },
+          "latest_activity_at": {
+            "format": "date-time",
+            "title": "Latest Activity At",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "read_only": {
+            "title": "Read Only",
+            "type": "boolean"
+          },
+          "recent_decisions": {
+            "items": {
+              "$ref": "#/components/schemas/DecisionSummary"
+            },
+            "title": "Recent Decisions",
+            "type": "array"
+          },
+          "unresolved_count": {
+            "title": "Unresolved Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "description",
+          "archived",
+          "read_only",
+          "unresolved_count",
+          "latest_activity_at",
+          "asks",
+          "recent_decisions"
+        ],
+        "title": "InitiativeSummary",
+        "type": "object"
+      },
+      "InitiativeWrite": {
+        "properties": {
+          "description": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/InitiativeKind"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "kind"
+        ],
+        "title": "InitiativeWrite",
+        "type": "object"
+      },
+      "InvitationCreate": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "title": "InvitationCreate",
+        "type": "object"
+      },
+      "JsonValue": {},
+      "LinearIssueTrigger": {
+        "additionalProperties": false,
+        "properties": {
+          "body_template": {
+            "title": "Body Template",
+            "type": "string"
+          },
+          "kind": {
+            "const": "linear.issue",
+            "title": "Kind",
+            "type": "string"
+          },
+          "team": {
+            "title": "Team",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "team",
+          "title",
+          "body_template"
+        ],
+        "title": "LinearIssueTrigger",
+        "type": "object"
+      },
+      "MembershipCreate": {
+        "properties": {
+          "actor_id": {
+            "format": "uuid",
+            "title": "Actor Id",
+            "type": "string"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "maxLength": 100,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          }
+        },
+        "required": [
+          "actor_id"
+        ],
+        "title": "MembershipCreate",
+        "type": "object"
+      },
+      "NeedsClarification": {
+        "properties": {
+          "question": {
+            "title": "Question",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question",
+          "reason"
+        ],
+        "title": "NeedsClarification",
+        "type": "object"
+      },
+      "OptionDto": {
+        "properties": {
+          "consequence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Consequence"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "ordinal": {
+            "title": "Ordinal",
+            "type": "integer"
+          },
+          "triggers": {
+            "items": {
+              "$ref": "#/components/schemas/LinearIssueTrigger"
+            },
+            "title": "Triggers",
+            "type": "array"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ordinal",
+          "value",
+          "label",
+          "consequence",
+          "triggers"
+        ],
+        "title": "OptionDto",
+        "type": "object"
+      },
+      "OptionWrite": {
+        "properties": {
+          "consequence": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Consequence"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          },
+          "triggers": {
+            "items": {
+              "$ref": "#/components/schemas/LinearIssueTrigger"
+            },
+            "title": "Triggers",
+            "type": "array"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          }
+        },
+        "required": [
+          "value",
+          "label"
+        ],
+        "title": "OptionWrite",
+        "type": "object"
+      },
+      "OrganizationRole": {
+        "enum": [
+          "member",
+          "admin"
+        ],
+        "title": "OrganizationRole",
+        "type": "string"
+      },
+      "OutcomeEffect": {
+        "enum": [
+          "unchanged",
+          "clarified",
+          "changed"
+        ],
+        "title": "OutcomeEffect",
+        "type": "string"
+      },
+      "OutcomeEffectWrite": {
+        "properties": {
+          "outcome_effect": {
+            "$ref": "#/components/schemas/OutcomeEffect"
+          },
+          "outcome_effect_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome Effect Note"
+          }
+        },
+        "required": [
+          "outcome_effect"
+        ],
+        "title": "OutcomeEffectWrite",
+        "type": "object"
+      },
+      "ProductCritique": {
+        "properties": {
+          "code": {
+            "enum": [
+              "compound_question",
+              "missing_escape_hatch",
+              "missing_deadline",
+              "dependency_flattened"
+            ],
+            "title": "Code",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "question_index": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Index"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "ProductCritique",
+        "type": "object"
+      },
+      "ProjectCreate": {
+        "properties": {
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "title": "ProjectCreate",
+        "type": "object"
+      },
+      "ProjectLanding": {
+        "properties": {
+          "initiatives": {
+            "items": {
+              "$ref": "#/components/schemas/InitiativeSummary"
+            },
+            "title": "Initiatives",
+            "type": "array"
+          },
+          "project": {
+            "$ref": "#/components/schemas/ProjectSummary"
+          },
+          "read_only": {
+            "title": "Read Only",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "project",
+          "read_only",
+          "initiatives"
+        ],
+        "title": "ProjectLanding",
+        "type": "object"
+      },
+      "ProjectRef": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "ProjectRef",
+        "type": "object"
+      },
+      "ProjectSummary": {
+        "properties": {
+          "archived": {
+            "title": "Archived",
+            "type": "boolean"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "description",
+          "archived"
+        ],
+        "title": "ProjectSummary",
+        "type": "object"
+      },
+      "QuestionClosePolicy": {
+        "enum": [
+          "all_responded",
+          "deadline",
+          "either"
+        ],
+        "title": "QuestionClosePolicy",
+        "type": "string"
+      },
+      "QuestionDto": {
+        "properties": {
+          "allow_comment": {
+            "title": "Allow Comment",
+            "type": "boolean"
+          },
+          "close_policy": {
+            "$ref": "#/components/schemas/QuestionClosePolicy"
+          },
+          "copied_from_question_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Copied From Question Id"
+          },
+          "critiques_overridden": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Critiques Overridden",
+            "type": "array"
+          },
+          "depends_on": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depends On"
+          },
+          "help_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Help Text"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "open_to": {
+            "$ref": "#/components/schemas/QuestionOpenTo"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/OptionDto"
+            },
+            "title": "Options",
+            "type": "array"
+          },
+          "ordinal": {
+            "title": "Ordinal",
+            "type": "integer"
+          },
+          "primitive": {
+            "$ref": "#/components/schemas/QuestionPrimitive"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "response_visibility": {
+            "$ref": "#/components/schemas/ResponseVisibility"
+          },
+          "supersedes_question_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Question Id"
+          },
+          "template_id": {
+            "title": "Template Id",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "template_id",
+          "primitive",
+          "version",
+          "supersedes_question_id",
+          "copied_from_question_id",
+          "ordinal",
+          "prompt",
+          "help_text",
+          "allow_comment",
+          "depends_on",
+          "options",
+          "critiques_overridden",
+          "response_visibility",
+          "close_policy",
+          "open_to"
+        ],
+        "title": "QuestionDto",
+        "type": "object"
+      },
+      "QuestionOpenTo": {
+        "enum": [
+          "assigned_only",
+          "project_members"
+        ],
+        "title": "QuestionOpenTo",
+        "type": "string"
+      },
+      "QuestionPrimitive": {
+        "enum": [
+          "select_one",
+          "select_many",
+          "text",
+          "number",
+          "date",
+          "date_range",
+          "bool",
+          "rank",
+          "scale"
+        ],
+        "title": "QuestionPrimitive",
+        "type": "string"
+      },
+      "QuestionState": {
+        "enum": [
+          "open",
+          "closed",
+          "superseded"
+        ],
+        "title": "QuestionState",
+        "type": "string"
+      },
+      "QuestionWrite": {
+        "properties": {
+          "allow_comment": {
+            "default": true,
+            "title": "Allow Comment",
+            "type": "boolean"
+          },
+          "close_policy": {
+            "$ref": "#/components/schemas/QuestionClosePolicy",
+            "default": "either"
+          },
+          "critiques_overridden": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "title": "Critiques Overridden",
+            "type": "array"
+          },
+          "depends_on": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depends On"
+          },
+          "help_text": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Help Text"
+          },
+          "open_to": {
+            "$ref": "#/components/schemas/QuestionOpenTo",
+            "default": "assigned_only"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/OptionWrite"
+            },
+            "title": "Options",
+            "type": "array"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "response_visibility": {
+            "$ref": "#/components/schemas/ResponseVisibility",
+            "default": "after_own_response"
+          },
+          "template_id": {
+            "title": "Template Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "template_id",
+          "prompt"
+        ],
+        "title": "QuestionWrite",
+        "type": "object"
+      },
+      "RecipientAddResult": {
+        "properties": {
+          "artifact": {
+            "$ref": "#/components/schemas/ShareArtifact"
+          },
+          "recipient": {
+            "$ref": "#/components/schemas/RecipientDto"
+          }
+        },
+        "required": [
+          "recipient",
+          "artifact"
+        ],
+        "title": "RecipientAddResult",
+        "type": "object"
+      },
+      "RecipientDto": {
+        "properties": {
+          "actor_id": {
+            "format": "uuid",
+            "title": "Actor Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "credential_active": {
+            "title": "Credential Active",
+            "type": "boolean"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "open_assignments": {
+            "title": "Open Assignments",
+            "type": "integer"
+          },
+          "recent_asks": {
+            "title": "Recent Asks",
+            "type": "integer"
+          },
+          "recent_assignments": {
+            "title": "Recent Assignments",
+            "type": "integer"
+          },
+          "share_marked_sent_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Share Marked Sent At"
+          },
+          "window_days": {
+            "title": "Window Days",
+            "type": "integer"
+          },
+          "workload_warning": {
+            "title": "Workload Warning",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "actor_id",
+          "display_name",
+          "email",
+          "created_at",
+          "credential_active",
+          "share_marked_sent_at",
+          "open_assignments",
+          "recent_assignments",
+          "recent_asks",
+          "window_days",
+          "workload_warning"
+        ],
+        "title": "RecipientDto",
+        "type": "object"
+      },
+      "RecipientPreview": {
+        "properties": {
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/QuestionDto"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "recipient_id": {
+            "format": "uuid",
+            "title": "Recipient Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_id",
+          "questions"
+        ],
+        "title": "RecipientPreview",
+        "type": "object"
+      },
+      "RecipientWrite": {
+        "properties": {
+          "actor_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor Id"
+          },
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "question_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Question Ids"
+          },
+          "replacement_deadline": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replacement Deadline"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          }
+        },
+        "title": "RecipientWrite",
+        "type": "object"
+      },
+      "ResolutionMetadataDto": {
+        "properties": {
+          "computed_basis": {
+            "$ref": "#/components/schemas/DecisionBasis"
+          },
+          "computed_value": {
+            "$ref": "#/components/schemas/JsonValue"
+          },
+          "computed_winner": {
+            "title": "Computed Winner",
+            "type": "boolean"
+          },
+          "conflict": {
+            "title": "Conflict",
+            "type": "boolean"
+          },
+          "eligible_count": {
+            "title": "Eligible Count",
+            "type": "integer"
+          },
+          "proposal_state": {
+            "$ref": "#/components/schemas/DecisionState"
+          },
+          "quorum_met": {
+            "title": "Quorum Met",
+            "type": "boolean"
+          },
+          "substantive_count": {
+            "title": "Substantive Count",
+            "type": "integer"
+          },
+          "vote_counts": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Vote Counts",
+            "type": "object"
+          }
+        },
+        "required": [
+          "computed_winner",
+          "computed_value",
+          "computed_basis",
+          "eligible_count",
+          "substantive_count",
+          "quorum_met",
+          "conflict",
+          "vote_counts",
+          "proposal_state"
+        ],
+        "title": "ResolutionMetadataDto",
+        "type": "object"
+      },
+      "ResponseDisposition": {
+        "enum": [
+          "answered",
+          "rejected_premise",
+          "delegated",
+          "need_context",
+          "abstain"
+        ],
+        "title": "ResponseDisposition",
+        "type": "string"
+      },
+      "ResponseRevisionDto": {
+        "properties": {
+          "comment": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Comment"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "disposition": {
+            "title": "Disposition",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "value": {
+            "$ref": "#/components/schemas/JsonValue"
+          },
+          "version": {
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "version",
+          "disposition",
+          "value",
+          "comment",
+          "created_at"
+        ],
+        "title": "ResponseRevisionDto",
+        "type": "object"
+      },
+      "ResponseVisibility": {
+        "enum": [
+          "immediate",
+          "after_own_response",
+          "after_close"
+        ],
+        "title": "ResponseVisibility",
+        "type": "string"
+      },
+      "ResultAssignmentDto": {
+        "properties": {
+          "actor_id": {
+            "format": "uuid",
+            "title": "Actor Id",
+            "type": "string"
+          },
+          "advisory": {
+            "title": "Advisory",
+            "type": "boolean"
+          },
+          "child_ask_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Child Ask Id"
+          },
+          "delegated_to_actor_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delegated To Actor Id"
+          },
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "distinct_ip_count": {
+            "title": "Distinct Ip Count",
+            "type": "integer"
+          },
+          "elapsed_seconds": {
+            "title": "Elapsed Seconds",
+            "type": "integer"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "late": {
+            "title": "Late",
+            "type": "boolean"
+          },
+          "latest_response": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ResponseRevisionDto"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "origin": {
+            "$ref": "#/components/schemas/AssignmentOrigin"
+          },
+          "recipient_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recipient Id"
+          },
+          "response_visible": {
+            "title": "Response Visible",
+            "type": "boolean"
+          },
+          "revisions": {
+            "items": {
+              "$ref": "#/components/schemas/ResponseRevisionDto"
+            },
+            "title": "Revisions",
+            "type": "array"
+          },
+          "state": {
+            "$ref": "#/components/schemas/AssignmentState"
+          }
+        },
+        "required": [
+          "id",
+          "recipient_id",
+          "actor_id",
+          "delegated_to_actor_id",
+          "child_ask_id",
+          "display_name",
+          "origin",
+          "advisory",
+          "late",
+          "state",
+          "elapsed_seconds",
+          "distinct_ip_count",
+          "latest_response",
+          "revisions",
+          "response_visible"
+        ],
+        "title": "ResultAssignmentDto",
+        "type": "object"
+      },
+      "ResultQuestionDto": {
+        "properties": {
+          "assignments": {
+            "items": {
+              "$ref": "#/components/schemas/ResultAssignmentDto"
+            },
+            "title": "Assignments",
+            "type": "array"
+          },
+          "can_contribute_advisory": {
+            "title": "Can Contribute Advisory",
+            "type": "boolean"
+          },
+          "close_policy": {
+            "$ref": "#/components/schemas/QuestionClosePolicy"
+          },
+          "copied_from_question_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Copied From Question Id"
+          },
+          "decision": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DecisionDto"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "open_to": {
+            "$ref": "#/components/schemas/QuestionOpenTo"
+          },
+          "options": {
+            "items": {
+              "$ref": "#/components/schemas/OptionDto"
+            },
+            "title": "Options",
+            "type": "array"
+          },
+          "ordinal": {
+            "title": "Ordinal",
+            "type": "integer"
+          },
+          "outcome_effect": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OutcomeEffect"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "outcome_effect_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome Effect Note"
+          },
+          "overdue": {
+            "title": "Overdue",
+            "type": "boolean"
+          },
+          "primitive": {
+            "$ref": "#/components/schemas/QuestionPrimitive"
+          },
+          "prompt": {
+            "title": "Prompt",
+            "type": "string"
+          },
+          "state": {
+            "$ref": "#/components/schemas/QuestionState"
+          },
+          "supersedes_question_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supersedes Question Id"
+          },
+          "version": {
+            "title": "Version",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "ordinal",
+          "prompt",
+          "primitive",
+          "state",
+          "open_to",
+          "close_policy",
+          "can_contribute_advisory",
+          "version",
+          "supersedes_question_id",
+          "copied_from_question_id",
+          "overdue",
+          "options",
+          "outcome_effect",
+          "outcome_effect_note",
+          "decision",
+          "assignments"
+        ],
+        "title": "ResultQuestionDto",
+        "type": "object"
+      },
+      "RoleUpdate": {
+        "properties": {
+          "role": {
+            "enum": [
+              "member",
+              "admin"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "role"
+        ],
+        "title": "RoleUpdate",
+        "type": "object"
+      },
+      "SendResult": {
+        "properties": {
+          "artifacts": {
+            "items": {
+              "$ref": "#/components/schemas/ShareArtifact"
+            },
+            "title": "Artifacts",
+            "type": "array"
+          },
+          "ask": {
+            "$ref": "#/components/schemas/AskAggregate"
+          }
+        },
+        "required": [
+          "ask",
+          "artifacts"
+        ],
+        "title": "SendResult",
+        "type": "object"
+      },
+      "ShareArtifact": {
+        "properties": {
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "recipient_id": {
+            "format": "uuid",
+            "title": "Recipient Id",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_id",
+          "display_name",
+          "url",
+          "message"
+        ],
+        "title": "ShareArtifact",
+        "type": "object"
+      },
+      "StakeholderQuestionDto": {
+        "properties": {
+          "assignment_id": {
+            "format": "uuid",
+            "title": "Assignment Id",
+            "type": "string"
+          },
+          "question_id": {
+            "format": "uuid",
+            "title": "Question Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "question_id",
+          "assignment_id"
+        ],
+        "title": "StakeholderQuestionDto",
+        "type": "object"
+      },
+      "StakeholderResultDto": {
+        "properties": {
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "distinct_ip_count": {
+            "title": "Distinct Ip Count",
+            "type": "integer"
+          },
+          "questions": {
+            "items": {
+              "$ref": "#/components/schemas/StakeholderQuestionDto"
+            },
+            "title": "Questions",
+            "type": "array"
+          },
+          "recipient_id": {
+            "format": "uuid",
+            "title": "Recipient Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "recipient_id",
+          "display_name",
+          "distinct_ip_count",
+          "questions"
+        ],
+        "title": "StakeholderResultDto",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "FAQ",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/admin/access": {
+      "get": {
+        "operationId": "access_overview_api_admin_access_get",
+        "parameters": [
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessOverview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Access Overview",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/actors/{actor_id}": {
+      "delete": {
+        "operationId": "deactivate_user_api_admin_actors__actor_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "actor_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Actor Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transfer_to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Transfer To"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Deactivate User",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/actors/{actor_id}/role": {
+      "patch": {
+        "operationId": "update_role_api_admin_actors__actor_id__role_patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "actor_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Actor Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RoleUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Update Role Api Admin Actors  Actor Id  Role Patch",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Role",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/invitations": {
+      "post": {
+        "operationId": "invite_user_api_admin_invitations_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InvitationCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Invite User Api Admin Invitations Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Invite User",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/invitations/{invitation_id}": {
+      "delete": {
+        "operationId": "revoke_invitation_api_admin_invitations__invitation_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "invitation_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Invitation Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Revoke Invitation",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/projects": {
+      "post": {
+        "operationId": "add_project_api_admin_projects_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProjectCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Add Project Api Admin Projects Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Project",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/projects/{project_id}/archive": {
+      "post": {
+        "operationId": "archive_project_api_admin_projects__project_id__archive_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Archive Project Api Admin Projects  Project Id  Archive Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Archive Project",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/projects/{project_id}/memberships": {
+      "post": {
+        "operationId": "add_membership_api_admin_projects__project_id__memberships_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MembershipCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Add Membership Api Admin Projects  Project Id  Memberships Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Membership",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/projects/{project_id}/memberships/{actor_id}": {
+      "delete": {
+        "operationId": "remove_membership_api_admin_projects__project_id__memberships__actor_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "actor_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Actor Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "transfer_to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Transfer To"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Remove Membership",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/admin/projects/{project_id}/reactivate": {
+      "post": {
+        "operationId": "reactivate_project_api_admin_projects__project_id__reactivate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Reactivate Project Api Admin Projects  Project Id  Reactivate Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reactivate Project",
+        "tags": [
+          "organization administration"
+        ]
+      }
+    },
+    "/api/asks": {
+      "post": {
+        "operationId": "create_ask_api_asks_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskAggregate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Ask",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}": {
+      "get": {
+        "operationId": "get_ask_api_asks__ask_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskAggregate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Ask",
+        "tags": [
+          "asks"
+        ]
+      },
+      "put": {
+        "operationId": "update_ask_api_asks__ask_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AskUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskAggregate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Ask",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/assistant": {
+      "post": {
+        "operationId": "draft_with_assistant_api_asks__ask_id__assistant_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DraftRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AssistantResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Draft With Assistant",
+        "tags": [
+          "assistant"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/cancel": {
+      "post": {
+        "operationId": "cancel_ask_api_asks__ask_id__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskAggregate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancel Ask",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/questions": {
+      "post": {
+        "operationId": "add_question_api_asks__ask_id__questions_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskAggregate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Question",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/questions/{question_id}": {
+      "delete": {
+        "operationId": "delete_question_api_asks__ask_id__questions__question_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Question Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Delete Question",
+        "tags": [
+          "asks"
+        ]
+      },
+      "put": {
+        "operationId": "update_question_api_asks__ask_id__questions__question_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Question Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskAggregate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Question",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/questions/{question_id}/advisory-responses": {
+      "post": {
+        "operationId": "submit_advisory_response_api_asks__ask_id__questions__question_id__advisory_responses_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Question Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdvisoryResponseWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseRevisionDto"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Submit Advisory Response",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/questions/{question_id}/decision": {
+      "post": {
+        "operationId": "decide_question_api_asks__ask_id__questions__question_id__decision_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Question Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecisionWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskResults"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Decide Question",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/questions/{question_id}/outcome-effect": {
+      "post": {
+        "operationId": "record_question_outcome_effect_api_asks__ask_id__questions__question_id__outcome_effect_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Question Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OutcomeEffectWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskResults"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Record Question Outcome Effect",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/questions/{question_id}/successor": {
+      "post": {
+        "operationId": "create_successor_ask_api_asks__ask_id__questions__question_id__successor_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "question_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Question Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskAggregate"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Successor Ask",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/recipients": {
+      "post": {
+        "operationId": "add_recipient_api_asks__ask_id__recipients_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecipientWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/RecipientDto"
+                    },
+                    {
+                      "$ref": "#/components/schemas/RecipientAddResult"
+                    }
+                  ],
+                  "title": "Response Add Recipient Api Asks  Ask Id  Recipients Post"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Recipient",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/recipients/{recipient_id}": {
+      "delete": {
+        "operationId": "revoke_recipient_api_asks__ask_id__recipients__recipient_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "recipient_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Recipient Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Revoke Recipient",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/recipients/{recipient_id}/checklist": {
+      "put": {
+        "operationId": "update_recipient_checklist_api_asks__ask_id__recipients__recipient_id__checklist_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "recipient_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Recipient Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChecklistWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecipientDto"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Update Recipient Checklist",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/recipients/{recipient_id}/reissue": {
+      "post": {
+        "operationId": "reissue_recipient_api_asks__ask_id__recipients__recipient_id__reissue_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "recipient_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Recipient Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ShareArtifact"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reissue Recipient",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/results": {
+      "get": {
+        "operationId": "get_results_api_asks__ask_id__results_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AskResults"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Results",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/asks/{ask_id}/send": {
+      "post": {
+        "operationId": "send_ask_api_asks__ask_id__send_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "ask_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Ask Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SendResult"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Send Ask",
+        "tags": [
+          "asks"
+        ]
+      }
+    },
+    "/api/auth/config": {
+      "get": {
+        "operationId": "auth_config_api_auth_config_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthConfigResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Auth Config",
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/api/auth/csrf": {
+      "get": {
+        "operationId": "issue_login_csrf_api_auth_csrf_get",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Issue Login Csrf",
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/api/auth/exchange": {
+      "post": {
+        "operationId": "exchange_identity_api_auth_exchange_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_login_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Login Csrf"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExchangeRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActorResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Exchange Identity",
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "operationId": "logout_api_auth_logout_post",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Logout",
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/api/auth/session": {
+      "get": {
+        "operationId": "read_session_api_auth_session_get",
+        "parameters": [
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActorResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Read Session",
+        "tags": [
+          "authentication"
+        ]
+      }
+    },
+    "/api/inbox": {
+      "get": {
+        "operationId": "owner_inbox_api_inbox_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InboxPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Owner Inbox",
+        "tags": [
+          "inbox"
+        ]
+      }
+    },
+    "/api/projects": {
+      "get": {
+        "operationId": "list_projects_api_projects_get",
+        "parameters": [
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ProjectSummary"
+                  },
+                  "title": "Response List Projects Api Projects Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Projects",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/api/projects/{project_id}": {
+      "get": {
+        "operationId": "project_landing_api_projects__project_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProjectLanding"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Project Landing",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/api/projects/{project_id}/feed": {
+      "get": {
+        "operationId": "project_feed_api_projects__project_id__feed_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Q"
+            }
+          },
+          {
+            "in": "query",
+            "name": "initiative_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Initiative Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_from",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date From"
+            }
+          },
+          {
+            "in": "query",
+            "name": "date_to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "date",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Date To"
+            }
+          },
+          {
+            "in": "query",
+            "name": "asker_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "format": "uuid",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Asker Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/AskStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FeedPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Project Feed",
+        "tags": [
+          "feed"
+        ]
+      }
+    },
+    "/api/projects/{project_id}/initiatives": {
+      "post": {
+        "operationId": "add_initiative_api_projects__project_id__initiatives_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InitiativeWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitiativeSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Initiative",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/api/projects/{project_id}/initiatives/{initiative_id}": {
+      "get": {
+        "operationId": "initiative_history_api_projects__project_id__initiatives__initiative_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "initiative_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Initiative Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitiativeSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Initiative History",
+        "tags": [
+          "projects"
+        ]
+      },
+      "put": {
+        "operationId": "edit_initiative_api_projects__project_id__initiatives__initiative_id__put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "initiative_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Initiative Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InitiativeWrite"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InitiativeSummary"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Edit Initiative",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/api/projects/{project_id}/initiatives/{initiative_id}/archive": {
+      "post": {
+        "operationId": "archive_initiative_api_projects__project_id__initiatives__initiative_id__archive_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "initiative_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Initiative Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Archive Initiative Api Projects  Project Id  Initiatives  Initiative Id  Archive Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Archive Initiative",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/api/projects/{project_id}/initiatives/{initiative_id}/reactivate": {
+      "post": {
+        "operationId": "reactivate_initiative_api_projects__project_id__initiatives__initiative_id__reactivate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "project_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Project Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "initiative_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Initiative Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "X-Csrf-Token"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_csrf",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Csrf"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "boolean"
+                  },
+                  "title": "Response Reactivate Initiative Api Projects  Project Id  Initiatives  Initiative Id  Reactivate Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Reactivate Initiative",
+        "tags": [
+          "projects"
+        ]
+      }
+    },
+    "/d/{decision_id}.md": {
+      "get": {
+        "operationId": "export_decision_d__decision_id__md_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "decision_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Decision Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "cookie",
+            "name": "faq_session",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Faq Session"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Export Decision",
+        "tags": [
+          "decisions"
+        ]
+      }
+    }
+  }
+}

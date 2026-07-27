@@ -1,0 +1,1 @@
+"""Typed public REST adapters."""

@@ -1,0 +1,13 @@
+output "public_url" { value = google_cloud_run_v2_service.public.uri }
+output "operator_url" { value = google_cloud_run_v2_service.operator.uri }
+output "jobs_url" { value = google_cloud_run_v2_service.jobs.uri }
+output "migration_job" { value = google_cloud_run_v2_job.migration.name }
+output "database_instance" { value = google_sql_database_instance.main.name }
+output "database_connection_name" { value = google_sql_database_instance.main.connection_name }
+output "public_service_account" { value = google_service_account.public.email }
+output "operator_service_account" { value = google_service_account.operator.email }
+output "jobs_service_account" { value = google_service_account.jobs.email }
+output "migration_service_account" { value = google_service_account.migration.email }
+output "scheduler_caller_service_account" { value = google_service_account.scheduler.email }
+output "firebase_web_app_id" { value = google_firebase_web_app.main.app_id }
+output "artifact_registry_repository" { value = google_artifact_registry_repository.app.name }
