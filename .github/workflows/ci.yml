@@ -42,6 +42,8 @@ jobs:
       - run: uv run pytest --cov=app --cov-report=term-missing --cov-report=xml:coverage/backend.xml --cov-report=html:coverage/backend
       - run: npm ci --legacy-peer-deps
         working-directory: frontend
+      - run: npx playwright install --with-deps chromium
+        working-directory: frontend
       - run: npm run contract:check
         working-directory: frontend
       - run: npm run lint && npm run test:coverage -- --coverage.reporter=text --coverage.reporter=lcov --coverage.reportsDirectory=coverage && npm run build
